@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1= heading
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='name') Name:
+      input#name.form-control(type='text', placeholder='Name of title' name='name' required='true' value=(undefined===title ? '' : title.name) )
+    div.form-group
+      label(for='artist') Artist:
+      select#artist.form-control(type='select', placeholder='Select artist' name='artist' required='true' )
+        for artist in artists
+          if title
+            option(value=artist._id selected=(artist._id.toString()==title.artist ? 'selected' : false) ) #{artist.name}
+          else
+            option(value=artist._id) #{artist.name}
+    div.form-group
+      label(for='summary') Summary:
+      input#summary.form-control(type='textarea', placeholder='Summary' name='summary' value=(undefined===title ? '' : title.summary) required='true')
+    div.form-group
+      label(for='year') Year:
+      input#year.form-control(type='text', placeholder='Year' name='year' value=(undefined===title ? '' : title.year) required='true') 
+    div.form-group
+      label Genre:
+      div
+        for genre in genres
+          div(style='display: inline; padding-right:10px;')
+            input.checkbox-input(type='checkbox', name='genre', id=genre._id, value=genre._id, checked=genre.checked )
+            label(for=genre._id) #{genre.name}
+    button.btn.btn-primary(type='submit') Submit
+
+  if errors 
+    ul
+      for error in errors
+        li!= error.msg

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  h1 ID: #{item._id}
+  
+  p #[strong Title:] 
+    a(href=item.title.url) #{item.title.name}
+  
+
+  p #[strong Status:] 
+    if item.status=='Available'
+      span.text-success #{item.status}
+    else
+      span.text-warning #{item.status} 
+  p #[strong Format:] #{item.format}   
+  

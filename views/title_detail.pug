@@ -1,0 +1,36 @@
+extends layout
+
+block content
+  h1 #{heading}: #{title.name}
+  
+  p #[strong Artist:] 
+    a(href=title.artist.url) #{title.artist.name}
+  p #[strong Summary:] #{title.summary}
+  p #[strong Genre:]&nbsp;
+    each genre, index in title.genre
+      a(href=genre.url) #{genre.name}
+      if index < title.genre.length - 1
+        |, 
+  
+  div(style='margin-left:20px;margin-top:20px')
+    h4 Copies
+    
+    each item in items
+      hr
+      if item.status=='Available'
+        p.text-success #{item.status}
+      
+      else
+        p.text-warning #{item.status} 
+      p #[strong Imprint:] #{item.imprint}
+      if item.status!='Available'
+        p #[strong Due back:] #{item.due_back_formatted}
+      p #[strong Id:]&nbsp;
+        a(href item.url) #{item._id}
+          
+    else
+      p There are no copies of this item in the library.
+
+    hr
+    p
+    a(href=title.url+'/update') Update Title      

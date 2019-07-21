@@ -1,0 +1,31 @@
+extends layout
+
+block content
+
+ h1 #[strong Name:] #{patron.name}
+  
+ p #[strong ID]   : #{patron._id}
+ 
+ p #[strong Address:] #{patron.street} #{patron.city}  #{patron.state} #{patron.zip}
+ p #[strong Email:] #{patron.email}
+  
+ if patron.is_delinquent == false
+    p #[strong Delinquency Status:] Not Delinquent
+ else
+    p #[strong Delinquency Status:] Is Delinquent
+
+ if checkouts != null
+   h4 #[Strong Current Checkouts:]
+   ul#myUL 
+      each checkout in checkouts
+         li 
+            p #[strong Item Name:] #{checkout.item.title.name} 
+            p #[strong Checkout Date:] #{checkout.checkout_date_formatted}
+            p #[strong Due Date:] #{checkout.due_date_formatted}
+            p #[strong Days Overdue:]#{checkout.days_overdue}
+            if checkout.returned == true
+               span.text-success Returned
+            form(method='POST' action='../item/'+ checkout.item._id + '/update')
+               button.btn.btn-primary(type="submit" ) Return Item
+ p #[strong Late Fees:] #{patron.late_fees}
+ 

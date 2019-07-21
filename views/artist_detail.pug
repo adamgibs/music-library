@@ -1,0 +1,19 @@
+extends layout
+
+block content
+
+  h1 Artist: #{artist.name}
+  p #{artist.date_of_birth_formatted} - #{artist.date_of_death_formatted}
+  
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Titles
+    
+    dl
+      each title in artist_titles
+        dt 
+          a(href=title.url) #{title.name}
+          |  #{title.year}
+
+      else
+        p This artist has no titles.

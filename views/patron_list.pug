@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  
+  input#myInput(type="text" onkeyup="filterList()" placeholder="Search for patrons..")
+  ul#myUL
+    each patron in patron_list
+      li 
+        a(href=patron.url) #{patron.name} 
+    else
+      li There are no patrons.

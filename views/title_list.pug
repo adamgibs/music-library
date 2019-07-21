@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  
+  ul
+    each title in title_list
+      li 
+        a(href=title.url) #{title.name} 
+        |  (#{title.artist.name})
+
+    else
+      li There are no titles.

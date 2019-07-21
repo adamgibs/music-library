@@ -1,0 +1,9 @@
+.sidebar-nav {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none;
+}
+
+input[type="radio"]{
+  margin: 0 10px 0 10px;
+}

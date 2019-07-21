@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  
+  input#myInput(type="text" onkeyup="filterList()" placeholder="Search for artists..")
+  ul#myUL
+    each artist in artist_list
+      li 
+        a(href=artist.url) #{artist.name} 
+        |  (#{artist.date_of_birth_formatted} - #{artist.date_of_death_formatted})
+
+    else
+      li There are no artists.
